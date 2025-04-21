@@ -119,7 +119,6 @@ class FlxSplash extends FlxState
 		FlxG.keys.enabled = true;
 		#end
 		FlxG.switchState(Type.createInstance(nextState, []));
-		FlxG.game._gameJustStarted = true;
 
 		if (FlxG.save.data.hasSeenSplash == null)
 		{
