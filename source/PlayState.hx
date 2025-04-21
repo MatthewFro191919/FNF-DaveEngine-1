@@ -644,32 +644,32 @@ class PlayState extends MusicBeatState
 			case 'MultidimensionalBG':
 				stageName = 'MultidimensionalBG';
 				bgZoom = 0.7;
-    var DayBG = new FlxSprite(-608, -500).loadGraphic("bambi/sky");
+    var DayBG = new FlxSprite(-608, -500).loadGraphic(Paths.image("bambi/sky");
     FlxG.state.add(DayBG);
     DayBG.scrollFactor.set(0.1, 0.1);
 
-    var flatgrass = new FlxSprite(-55, -150).loadGraphic("bambi/gm_flatgrass");
+    var flatgrass = new FlxSprite(-55, -150).loadGraphic(Paths.image("bambi/gm_flatgrass"));
     FlxG.state.add(flatgrass);
     flatgrass.scrollFactor.set(0.3, 0.3);
     flatgrass.scale.set(0.3, 0.3);
 
-    var hills = new FlxSprite(-220, 5).loadGraphic("bambi/orangey hills");
+    var hills = new FlxSprite(-220, 5).loadGraphic("bambi/orangey hills"));
     FlxG.state.add(hills);
     hills.scrollFactor.set(0.3, 0.3);
 
-    var farm = new FlxSprite(69, 85).loadGraphic("bambi/funfarmhouse");
+    var farm = new FlxSprite(69, 85).loadGraphic(Paths.image("bambi/funfarmhouse"));
     FlxG.state.add(farm);
     farm.scrollFactor.set(0.6, 0.6);
 
-    var ground = new FlxSprite(-480, 480).loadGraphic("bambi/grass lands");
+    var ground = new FlxSprite(-480, 480).loadGraphic(Paths.image("bambi/grass lands"));
     FlxG.state.add(ground);
     ground.scrollFactor.set(1, 1);
 
-    var corn1 = new FlxSprite(-280, 180).loadGraphic("bambi/cornFence");
+    var corn1 = new FlxSprite(-280, 180).loadGraphic(Paths.image("bambi/cornFence"));
     FlxG.state.add(corn1);
     corn1.scrollFactor.set(1, 1);
 
-    var corn2 = new FlxSprite(1220, 200).loadGraphic("bambi/cornFence2");
+    var corn2 = new FlxSprite(1220, 200).loadGraphic(Paths.image("bambi/cornFence2"));
     FlxG.state.add(corn2);
     corn2.scrollFactor.set(1, 1);
 
