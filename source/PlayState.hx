@@ -688,45 +688,6 @@ class PlayState extends MusicBeatState
     var sign = new FlxSprite(125, 340).loadGraphic("bambi/Sign");
     FlxG.state.add(sign);
     sign.scrollFactor.set(1, 1);
-
-    var cornbag = new FlxSprite(1320, 550).loadGraphic("bambi/cornbag");
-    FlxG.state.add(cornbag);
-    cornbag.scrollFactor.set(1, 1);
-
-    var bg1 = new FlxSprite(-800, -500).loadGraphic("RedSkyBG");
-    FlxG.state.add(bg1);
-    bg1.scrollFactor.set(1, 1);
-    addGlitchEffect(bg1, 2, 5, 0.1);
-    bg1.scale.set(1.3, 1.3);
-    bg1.visible = true;
-
-    var bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
-    FlxG.state.add(bg2);
-    bg2.scrollFactor.set(1, 1);
-    addGlitchEffect(bg2, 2, 5, 0.1);
-    bg2.scale.set(1.3, 1.3);
-    bg2.visible = false;
-
-    var bg3 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/PIlls");
-    FlxG.state.add(bg3);
-    bg3.scrollFactor.set(1, 1);
-    addGlitchEffect(bg3, 2, 5, 0.1);
-    bg3.scale.set(1.3, 1.3);
-    bg3.visible = false;
-
-    var bg4 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Tubed");
-    FlxG.state.add(bg4);
-    bg4.scrollFactor.set(1, 1);
-    addGlitchEffect(bg4, 2, 5, 0.1);
-    bg4.scale.set(1.3, 1.3);
-    bg4.visible = false;
-
-    var bg5 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/DarkBlue");
-    FlxG.state.add(bg5);
-    bg5.scrollFactor.set(1, 1);
-    addGlitchEffect(bg5, 2, 5, 0.1);
-    bg5.scale.set(1.3, 1.3);
-    bg5.visible = false;
 			case 'spooky':
 				stageName = 'spooky';
 
@@ -2735,7 +2696,11 @@ class PlayState extends MusicBeatState
 			updateAccuracy();
 		}
 	}
-
+ var bg1:FlxSprite;
+ var bg2:FlxSprite;
+ var bg3:FlxSprite;
+ var bg4:FlxSprite;
+ var bg5:FlxSprite;
 	override function stepHit()
 	{
 		super.stepHit();
@@ -2762,6 +2727,67 @@ class PlayState extends MusicBeatState
 							}
 						});
 						subtitleManager.addSubtitle(LanguageManager.getTextString('ugh'), 0.02, 1);
+				}
+			case 'multidimensional':
+				switch (curStep)
+				{
+    if (curStep == 0) {
+    bg1 = new FlxSprite(-800, -500).loadGraphic("RedSkyBG");
+    FlxG.state.add(bg1);
+    bg1.scrollFactor.set(1, 1);
+    addGlitchEffect(bg1, 2, 5, 0.1);
+    bg1.scale.set(1.3, 1.3);
+    }
+    if (curStep == 1024) {
+        FlxG.camera.flash("FFFFFF", 1);
+    var bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
+    FlxG.state.add(bg2);
+    bg2.scrollFactor.set(1, 1);
+    addGlitchEffect(bg2, 2, 5, 0.1);
+    bg2.scale.set(1.3, 1.3);
+        bg1.visible = false;
+        bg2.visible = true;
+    }
+    if (curStep == 1536) {
+        FlxG.camera.flash("FFFFFF", 1);
+    var bg3 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/PIlls");
+    FlxG.state.add(bg3);
+    bg3.scrollFactor.set(1, 1);
+    addGlitchEffect(bg3, 2, 5, 0.1);
+    bg3.scale.set(1.3, 1.3);
+        bg2.visible = false;
+        bg3.visible = true;
+    }
+    if (curStep == 2048) {
+        FlxG.camera.flash("FFFFFF", 1);
+    var bg4 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Tubed");
+    FlxG.state.add(bg4);
+    bg4.scrollFactor.set(1, 1);
+    addGlitchEffect(bg4, 2, 5, 0.1);
+    bg4.scale.set(1.3, 1.3);
+        bg3.visible = false;
+        bg4.visible = true;
+    }
+    if (curStep == 2560) {
+        FlxG.camera.flash("FFFFFF", 1);
+    var bg5 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/DarkBlue");
+    FlxG.state.add(bg5);
+    bg5.scrollFactor.set(1, 1);
+    addGlitchEffect(bg5, 2, 5, 0.1);
+    bg5.scale.set(1.3, 1.3);
+        bg4.visible = false;
+        bg5.visible = true;
+    }
+    if (curStep == 2943) {
+        FlxG.camera.flash("FFFFFF", 1);
+        bg5.visible = false;
+        bg2.visible = true;
+    }
+
+    if (curStep == 3224) {
+        FlxG.camera.flash("FFFFFF", 1);
+        bg2.visible = false;
+    }
 				}
 		}
 
