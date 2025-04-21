@@ -2726,7 +2726,7 @@ class PlayState extends MusicBeatState
     bg1.scrollFactor.set(1, 1);
     bg1.scale.set(1.3, 1.3);
     case 1024:
-        FlxG.camera.flash("FFFFFF", 1);
+        FlxG.camera.flash(FlxColor.WHITE, 1);
     bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
     FlxG.state.add(bg2);
     bg2.scrollFactor.set(1, 1);
@@ -2741,7 +2741,7 @@ class PlayState extends MusicBeatState
         bg2.visible = false;
         bg3.visible = true;
     case 2048:
-        FlxG.camera.flash("FFFFFF", 1);
+        FlxG.camera.flash(FlxColor.WHITE, 1);
     bg4 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Tubed");
     FlxG.state.add(bg4);
     bg4.scrollFactor.set(1, 1);
@@ -2749,7 +2749,7 @@ class PlayState extends MusicBeatState
         bg3.visible = false;
         bg4.visible = true;
     case 2560:
-        FlxG.camera.flash("FFFFFF", 1);
+        FlxG.camera.flash(FlxColor.WHITE, 1);
     bg5 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/DarkBlue");
     FlxG.state.add(bg5);
     bg5.scrollFactor.set(1, 1);
@@ -2757,11 +2757,11 @@ class PlayState extends MusicBeatState
         bg4.visible = false;
         bg5.visible = true;
     case 2943:
-        FlxG.camera.flash("FFFFFF", 1);
+        FlxG.camera.flash(FlxColor.WHITE, 1);
         bg5.visible = false;
         bg2.visible = true;
     case 3224:
-        FlxG.camera.flash("FFFFFF", 1);
+        FlxG.camera.flash(FlxColor.WHITE, 1);
         bg2.visible = false;
 				}
 		}
