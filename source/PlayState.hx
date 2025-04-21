@@ -411,14 +411,6 @@ class PlayState extends MusicBeatState
 
 		add(foregroundSprites);
 
-		switch (stageCheck)
-		{
-			case 'MultidimensionalBG':
-				if (funnyFloatyBoys.contains(dad.curCharacter) || floatyBoysMod.contains(dad.curCharacter))
-				{
-					dad.y -= 70;
-				}
-		}
 		var doof:DialogueBox = new DialogueBox(false, dialogue, isStoryMode);
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
@@ -2740,7 +2732,7 @@ class PlayState extends MusicBeatState
     }
     if (curStep == 1024) {
         FlxG.camera.flash("FFFFFF", 1);
-    var bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
+    bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
     FlxG.state.add(bg2);
     bg2.scrollFactor.set(1, 1);
     addGlitchEffect(bg2, 2, 5, 0.1);
@@ -2750,7 +2742,7 @@ class PlayState extends MusicBeatState
     }
     if (curStep == 1536) {
         FlxG.camera.flash("FFFFFF", 1);
-    var bg3 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/PIlls");
+    bg3 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/PIlls");
     FlxG.state.add(bg3);
     bg3.scrollFactor.set(1, 1);
     addGlitchEffect(bg3, 2, 5, 0.1);
@@ -2760,7 +2752,7 @@ class PlayState extends MusicBeatState
     }
     if (curStep == 2048) {
         FlxG.camera.flash("FFFFFF", 1);
-    var bg4 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Tubed");
+    bg4 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Tubed");
     FlxG.state.add(bg4);
     bg4.scrollFactor.set(1, 1);
     addGlitchEffect(bg4, 2, 5, 0.1);
@@ -2770,7 +2762,7 @@ class PlayState extends MusicBeatState
     }
     if (curStep == 2560) {
         FlxG.camera.flash("FFFFFF", 1);
-    var bg5 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/DarkBlue");
+    bg5 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/DarkBlue");
     FlxG.state.add(bg5);
     bg5.scrollFactor.set(1, 1);
     addGlitchEffect(bg5, 2, 5, 0.1);
