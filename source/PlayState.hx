@@ -2769,8 +2769,7 @@ class PlayState extends MusicBeatState
         FlxG.camera.flash("FFFFFF", 1);
         bg5.visible = false;
         bg2.visible = true;
-
-    case 3224
+    case 3224:
         FlxG.camera.flash("FFFFFF", 1);
         bg2.visible = false;
 				}
