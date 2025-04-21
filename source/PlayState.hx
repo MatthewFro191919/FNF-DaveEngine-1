@@ -72,6 +72,10 @@ class PlayState extends MusicBeatState
 	var focusOnDadGlobal:Bool = true;
 	var fastCarCanDrive:Bool = true;
 
+	public static var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d'];
+	public static var floatyBoysMod:Array<String> = [];
+	public static var threedBoysMod:Array<String> = ['nofriend'];
+
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
 	var detailsText:String = "";
@@ -298,6 +302,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'schoolEvil';
 				case 'ugh' | 'guns' | 'stress':
 					stageCheck = 'tank';
+				case 'multidimensional':
+					stageCheck = 'MultidimensionalBG';
 				default:
 					stageCheck = 'stage';
 			}
@@ -401,6 +407,14 @@ class PlayState extends MusicBeatState
 
 		add(foregroundSprites);
 
+		switch (stageCheck)
+		{
+			case 'MultidimensionalBG':
+				if (funnyFloatyBoys.contains(dad.curCharacter) || floatyBoysMod.contains(dad.curCharacter))
+				{
+					dad.y -= 70;
+				}
+		}
 		var doof:DialogueBox = new DialogueBox(false, dialogue, isStoryMode);
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
@@ -635,6 +649,9 @@ class PlayState extends MusicBeatState
 		var stageName:String = '';
 		switch (bgName)
 		{
+			case 'MultidimensionalBG':
+				stageName = 'MultidimensionalBG';
+				bgZoom = 0.7;
 			case 'spooky':
 				stageName = 'spooky';
 
