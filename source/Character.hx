@@ -590,7 +590,8 @@ class Character extends FlxSprite
 				
 				barColor = FlxColor.fromRGB(130, 47, 42);
 
-				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
+				
+				setGraphicSize(Std.int(width * 0.8));
 				updateHitbox();
 				antialiasing = false;
 
