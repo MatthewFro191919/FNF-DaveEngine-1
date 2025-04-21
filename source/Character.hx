@@ -34,6 +34,10 @@ class Character extends FlxSprite
 
 	public var charList:Array<String> = [];
 
+	public var specialAnim:Bool = false;
+
+	public var furiosityScale:Float = 1.5;
+
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
 		super(x, y);
