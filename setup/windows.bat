@@ -4,6 +4,7 @@ cd ..
 @echo on
 echo Installing dependencies...
 echo This might take a few moments depending on your internet speed.
+haxelib install hxcpp
 haxelib install lime 8.1.2
 haxelib install openfl 9.3.3
 haxelib install flixel 5.6.1
@@ -19,7 +20,10 @@ haxelib set openfl 9.3.3
 haxelib install hxCodec 2.5.1
 haxelib install hscript
 haxelib install actuate
+haxelib install format
+haxelib install hxp
 haxelib install hscript-improved
+haxelib git swf https://github.com/openfl/swf
 haxelib git faxe https://github.com/uhrobots/faxe
 haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
