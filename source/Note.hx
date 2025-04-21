@@ -33,6 +33,8 @@ class Note extends FlxSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 
+	public static var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d', 'nofriend'];
+
 	public static var swagWidth:Float = 160 * 0.7;
 
 	private var notetolookfor = 0;
@@ -77,8 +79,19 @@ class Note extends FlxSprite
 		if (isInState('PlayState'))
 			this.strumTime += FlxG.save.data.offset;
 
+
 		var notePathLol:String = 'notes/NOTE_assets';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
+
+		if ((((CharactersWith3D.contains(PlayState.SONG.player2)) || ((CharactersWith3D.contains(PlayState.SONG.player1)
+				|| CharactersWith3D.contains(PlayState.characteroverride) || CharactersWith3D.contains(PlayState.formoverride))))
+				|| ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10))) 
+				|| random == 1
+				&& this.noteStyle == 'normal')
+		{
+			this.noteStyle = '3D';
+			notePathLol = 'notes/NOTE_assets_3D';
+		}
 
 		switch (noteStyle)
 		{
