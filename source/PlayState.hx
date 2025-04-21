@@ -2688,6 +2688,7 @@ class PlayState extends MusicBeatState
 			updateAccuracy();
 		}
 	}
+
  var bg1:FlxSprite;
  var bg2:FlxSprite;
  var bg3:FlxSprite;
@@ -2723,14 +2724,13 @@ class PlayState extends MusicBeatState
 			case 'multidimensional':
 				switch (curStep)
 				{
-    if (curStep == 0) {
+    case 0:
     bg1 = new FlxSprite(-800, -500).loadGraphic("RedSkyBG");
     FlxG.state.add(bg1);
     bg1.scrollFactor.set(1, 1);
     addGlitchEffect(bg1, 2, 5, 0.1);
     bg1.scale.set(1.3, 1.3);
-    }
-    if (curStep == 1024) {
+    case 1024:
         FlxG.camera.flash("FFFFFF", 1);
     bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
     FlxG.state.add(bg2);
@@ -2739,9 +2739,7 @@ class PlayState extends MusicBeatState
     bg2.scale.set(1.3, 1.3);
         bg1.visible = false;
         bg2.visible = true;
-    }
-    if (curStep == 1536) {
-        FlxG.camera.flash("FFFFFF", 1);
+    case 1536:
     bg3 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/PIlls");
     FlxG.state.add(bg3);
     bg3.scrollFactor.set(1, 1);
@@ -2749,8 +2747,7 @@ class PlayState extends MusicBeatState
     bg3.scale.set(1.3, 1.3);
         bg2.visible = false;
         bg3.visible = true;
-    }
-    if (curStep == 2048) {
+    case 2048:
         FlxG.camera.flash("FFFFFF", 1);
     bg4 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Tubed");
     FlxG.state.add(bg4);
@@ -2759,8 +2756,7 @@ class PlayState extends MusicBeatState
     bg4.scale.set(1.3, 1.3);
         bg3.visible = false;
         bg4.visible = true;
-    }
-    if (curStep == 2560) {
+    case 2560:
         FlxG.camera.flash("FFFFFF", 1);
     bg5 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/DarkBlue");
     FlxG.state.add(bg5);
@@ -2769,17 +2765,14 @@ class PlayState extends MusicBeatState
     bg5.scale.set(1.3, 1.3);
         bg4.visible = false;
         bg5.visible = true;
-    }
-    if (curStep == 2943) {
+    case 2943:
         FlxG.camera.flash("FFFFFF", 1);
         bg5.visible = false;
         bg2.visible = true;
-    }
 
-    if (curStep == 3224) {
+    case 3224
         FlxG.camera.flash("FFFFFF", 1);
         bg2.visible = false;
-    }
 				}
 		}
 
