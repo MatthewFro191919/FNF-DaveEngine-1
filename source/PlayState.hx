@@ -46,6 +46,8 @@ import vlc.MP4Handler as VideoHandler;
 import Discord.DiscordClient;
 #end
 
+import openfl.filters.ShaderFilter;
+
 import Shaders.PulseEffect;
 import Shaders.BlockedGlitchShader;
 import Shaders.BlockedGlitchEffect;
@@ -229,6 +231,15 @@ class PlayState extends MusicBeatState
 	var bgGirls:BackgroundGirls;
 
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
+
+	#if SHADERS_ENABLED
+	var wiggleShit:WiggleEffect = new WiggleEffect();
+	var susWiggle:ShaderFilter;
+	#end
+
+	public var shakeCam:Bool = false;
+
+	public var background:BGSprite;
 
 	override public function create()
 	{
@@ -1189,7 +1200,7 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	function voidShader(background:BGSprite)
+	function voidShader()
 	{
 		if(FlxG.save.data.waving){
 			#if SHADERS_ENABLED
