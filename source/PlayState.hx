@@ -1241,7 +1241,6 @@ class PlayState extends MusicBeatState
 				multidimensionBG.scale.set(1.3, 1.3);
 				multidimensionBG.setPosition(-800, -500);
 		}
-		voidShader(multidimensionBG);
 		currentmultidimensionBG = type;
 	}
 	var startTimer:FlxTimer;
