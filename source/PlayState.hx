@@ -1221,7 +1221,7 @@ class PlayState extends MusicBeatState
 				multidimensionBG.scale.set(1.3, 1.3);
 				multidimensionBG.setPosition(-800, -500);
 			case 'trippy':
-				bg2.loadGraphic(Paths.image("dave/multidimentional/Trippy"));
+				multidimensionBG.loadGraphic(Paths.image("dave/multidimentional/Trippy"));
 				multidimensionBG.scrollFactor.set(1, 1);
 				multidimensionBG.scale.set(1.3, 1.3);
 				multidimensionBG.setPosition(-800, -500);
