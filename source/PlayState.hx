@@ -52,6 +52,8 @@ import Shaders.PulseEffect;
 import Shaders.BlockedGlitchShader;
 import Shaders.BlockedGlitchEffect;
 import Shaders.DitherEffect;
+import Shaders.WiggleEffectType;
+import Shaders.WiggleEffect;
 
 import WiggleEffect.WiggleEffectType;
 
