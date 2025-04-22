@@ -682,7 +682,7 @@ class PlayState extends MusicBeatState
     flatgrass.scrollFactor.set(0.3, 0.3);
     flatgrass.scale.set(0.3, 0.3);
 
-    var hills = new FlxSprite(-220, 5).loadGraphic("bambi/orangey hills"));
+    var hills = new FlxSprite(-220, 5).loadGraphic(Paths.image("bambi/orangey hills"));
     FlxG.state.add(hills);
     hills.scrollFactor.set(0.3, 0.3);
 
