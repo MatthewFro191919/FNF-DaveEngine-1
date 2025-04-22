@@ -55,8 +55,6 @@ import Shaders.DitherEffect;
 import Shaders.WiggleEffectType;
 import Shaders.WiggleEffect;
 
-import WiggleEffect.WiggleEffectType;
-
 class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState;
@@ -244,6 +242,8 @@ class PlayState extends MusicBeatState
 	public var shakeCam:Bool = false;
 
 	public var background:BGSprite;
+
+	public static var eyesoreson = true;
 
 	override public function create()
 	{
