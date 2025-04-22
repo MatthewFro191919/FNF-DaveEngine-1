@@ -53,6 +53,8 @@ import Shaders.BlockedGlitchShader;
 import Shaders.BlockedGlitchEffect;
 import Shaders.DitherEffect;
 
+import WiggleEffect.WiggleEffectType;
+
 class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState;
