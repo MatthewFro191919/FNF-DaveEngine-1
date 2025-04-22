@@ -55,5 +55,11 @@ class SaveDataHandler
 
 		if (FlxG.save.data.disableFps == null)
 			FlxG.save.data.disableFps = false;
+
+		if (FlxG.save.data.waving == null)
+			FlxG.save.data.waving = true;
+
+		if (FlxG.save.data.shaders == null)
+			FlxG.save.data.shaders = true;
 	}
 }
