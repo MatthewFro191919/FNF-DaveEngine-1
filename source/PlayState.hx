@@ -723,19 +723,19 @@ class PlayState extends MusicBeatState
 				FlxG.state.add(corn2);
 				corn2.scrollFactor.set(1, 1);
 
-				var sign = new FlxSprite(125, 340).loadGraphic("bambi/Sign");
+				var sign = new FlxSprite(125, 340).loadGraphic(Paths.image("bambi/Sign"));
 				FlxG.state.add(sign);
 				sign.scrollFactor.set(1, 1);
 
-				bg1 = new FlxSprite(-800, -500).loadGraphic("RedSkyBG");
+				bg1 = new FlxSprite(-800, -500).loadGraphic(Paths.image("RedSkyBG"));
 				sprites.add(bg1);
 				bg1.scrollFactor.set(1, 1);
 				bg1.scale.set(1.3, 1.3);
 				voidShader(bg1);
 				add(bg1);
-				bg1.visible = true;)
+				bg1.visible = true;
 
-				bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
+				bg2 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/Trippy"));
 				sprites.add(bg2);
 				bg2.scrollFactor.set(1, 1);
 				bg2.scale.set(1.3, 1.3);
@@ -743,7 +743,7 @@ class PlayState extends MusicBeatState
 				add(bg2);
 				bg2.visible = false;
 
-				bg3 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/PIlls");
+				bg3 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/PIlls"));
 				sprites.add(bg3);
 				bg3.scrollFactor.set(1, 1);
 				bg3.scale.set(1.3, 1.3);
@@ -751,7 +751,7 @@ class PlayState extends MusicBeatState
 				add(bg3);
 				bg3.visible = false;
 				
-				bg4 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Tubed");
+				bg4 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/Tubed"));
 				sprites.add(bg4);
 				bg4.scrollFactor.set(1, 1);
 				bg4.scale.set(1.3, 1.3);
@@ -759,7 +759,7 @@ class PlayState extends MusicBeatState
 				add(bg4);
 				bg4.visible = false;
 
-				bg5 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/DarkBlue");
+				bg5 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/DarkBlue"));
 				sprites.add(bg5);
 				bg5.scrollFactor.set(1, 1);
 				bg5.scale.set(1.3, 1.3);
