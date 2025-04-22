@@ -46,6 +46,11 @@ import vlc.MP4Handler as VideoHandler;
 import Discord.DiscordClient;
 #end
 
+import Shaders.PulseEffect;
+import Shaders.BlockedGlitchShader;
+import Shaders.BlockedGlitchEffect;
+import Shaders.DitherEffect;
+
 class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState;
