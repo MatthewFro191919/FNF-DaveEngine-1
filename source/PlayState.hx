@@ -704,6 +704,17 @@ class PlayState extends MusicBeatState
 				stageName = 'MultidimensionalBG';
 				bgZoom = 0.7;
 
+<<<<<<< HEAD
+=======
+				bg1 = new BGSprite(-800, -500).loadGraphic(Paths.image("RedSkyBG"));
+				sprites.add(bg1);
+				bg1.scrollFactor.set(1, 1);
+				bg1.scale.set(1.3, 1.3);
+				voidShader(bg1);
+				add(bg1);
+				bg1.visible = true;
+
+>>>>>>> fd8835d769741a1a4e56ee290888be8c827f9d34
 			case 'spooky':
 				stageName = 'spooky';
 
