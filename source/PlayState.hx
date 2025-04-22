@@ -69,6 +69,15 @@ class PlayState extends MusicBeatState
 
 	public static var curmult:Array<Float> = [1, 1, 1, 1];
 
+	public var curbg:BGSprite;
+
+	#if SHADERS_ENABLED
+	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
+	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
+	public static var blockedShader:BlockedGlitchEffect;
+	public var dither:DitherEffect = new DitherEffect();
+	#end
+
 	var focusOnDadGlobal:Bool = true;
 	var fastCarCanDrive:Bool = true;
 
@@ -322,6 +331,21 @@ class PlayState extends MusicBeatState
 		if (formoverride == "bf-pixel" || SONG.player1 == "bf-pixel" && pixelStages.contains(curStage))
 		{
 			gfVersion = 'gf-pixel';
+		}
+
+		if(FlxG.save.data.waving){
+			#if SHADERS_ENABLED
+			FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
+			#end
+		}
+
+		if(FlxG.save.data.waving){
+			#if SHADERS_ENABLED
+			screenshader.waveAmplitude = 0.5;
+			screenshader.waveFrequency = 1;
+			screenshader.waveSpeed = 1;
+			screenshader.shader.uTime.value[0] = new flixel.math.FlxRandom().float(-100000, 100000);
+			#end
 		}
 
 		gfGroup = new FlxGroup();
@@ -644,7 +668,7 @@ class PlayState extends MusicBeatState
 			case 'MultidimensionalBG':
 				stageName = 'MultidimensionalBG';
 				bgZoom = 0.7;
-    var DayBG = new FlxSprite(-608, -500).loadGraphic(Paths.image("bambi/sky");
+    var DayBG = new FlxSprite(-608, -500).loadGraphic(Paths.image("bambi/sky"));
     FlxG.state.add(DayBG);
     DayBG.scrollFactor.set(0.1, 0.1);
 
@@ -1160,6 +1184,21 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	function voidShader(background:BGSprite)
+	{
+		if(FlxG.save.data.waving){
+			#if SHADERS_ENABLED
+			var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
+			testshader.waveAmplitude = 0.1;
+			testshader.waveFrequency = 5;
+			testshader.waveSpeed = 2;
+			
+			background.shader = testshader.shader;
+			#end
+		}
+		curbg = background;
+	}
+
 	var startTimer:FlxTimer;
 
 	function startCountdown():Void
@@ -1662,6 +1701,19 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (curbg != null)
+		{
+			if (curbg.active) // only the polygonized background is active
+			{
+				if(FlxG.save.data.waving){
+					#if SHADERS_ENABLED
+					var shad = cast(curbg.shader, Shaders.GlitchShader);
+					shad.uTime.value[0] += elapsed;
+					#end
+				}
+			}
+		}
+
 		if (tweenList != null && tweenList.length != 0)
 		{
 			for (tween in tweenList)
@@ -1669,6 +1721,33 @@ class PlayState extends MusicBeatState
 				if (tween.active && !tween.finished)
 					tween.percent = FlxG.sound.music.time / tweenTime;
 			}
+		}
+
+		if(FlxG.save.data.waving){
+			#if SHADERS_ENABLED
+			FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
+			#end
+		}
+
+
+		if(FlxG.save.data.waving){
+			#if SHADERS_ENABLED
+			screenshader.shader.uTime.value[0] += elapsed;
+			lazychartshader.shader.uTime.value[0] += elapsed;
+			if (blockedShader != null)
+			{
+				blockedShader.update(elapsed);
+			}
+			if (shakeCam && eyesoreson)
+			{
+				screenshader.shader.uampmul.value[0] = 1;
+			}
+			else
+			{
+				screenshader.shader.uampmul.value[0] -= (elapsed / 2);
+			}
+			screenshader.Enabled = shakeCam && eyesoreson;
+			#end
 		}
 
 		switch (curStage)
@@ -2077,6 +2156,14 @@ class PlayState extends MusicBeatState
 			camFollow.x += bfNoteCamOffset[0];
 			camFollow.y += bfNoteCamOffset[1];
 
+
+	        	// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
+	         	if(FlxG.save.data.waving){
+		        	#if SHADERS_ENABLED
+	         		wiggleShit.update(Conductor.crochet);
+		        	#end
+	        	}
+	
 			if (SONG.song.toLowerCase() == 'tutorial')
 			{
 				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.sineInOut});
@@ -2155,6 +2242,18 @@ class PlayState extends MusicBeatState
 			{
 				Transition.nextCamera = null;
 			}
+		}
+	}
+
+	public static function resetShader()
+	{
+		PlayState.instance.shakeCam = false;
+		PlayState.instance.camZooming = false;
+		if(FlxG.save.data.waving){
+			#if SHADERS_ENABLED
+		     screenshader.shader.uampmul.value[0] = 0;
+		     screenshader.Enabled = false;
+		     #end
 		}
 	}
 
@@ -2725,12 +2824,14 @@ class PlayState extends MusicBeatState
     FlxG.state.add(bg1);
     bg1.scrollFactor.set(1, 1);
     bg1.scale.set(1.3, 1.3);
+    voidShader(bg1);
     case 1024:
         FlxG.camera.flash(FlxColor.WHITE, 1);
     bg2 = new FlxSprite(-800, -500).loadGraphic("dave/multidimentional/Trippy");
     FlxG.state.add(bg2);
     bg2.scrollFactor.set(1, 1);
     bg2.scale.set(1.3, 1.3);
+    voidShader(bg2);
         bg1.visible = false;
         bg2.visible = true;
     case 1536:
@@ -2738,6 +2839,7 @@ class PlayState extends MusicBeatState
     FlxG.state.add(bg3);
     bg3.scrollFactor.set(1, 1);
     bg3.scale.set(1.3, 1.3);
+    voidShader(bg3);
         bg2.visible = false;
         bg3.visible = true;
     case 2048:
@@ -2746,6 +2848,7 @@ class PlayState extends MusicBeatState
     FlxG.state.add(bg4);
     bg4.scrollFactor.set(1, 1);
     bg4.scale.set(1.3, 1.3);
+    voidShader(bg4);
         bg3.visible = false;
         bg4.visible = true;
     case 2560:
@@ -2754,6 +2857,7 @@ class PlayState extends MusicBeatState
     FlxG.state.add(bg5);
     bg5.scrollFactor.set(1, 1);
     bg5.scale.set(1.3, 1.3);
+    voidShader(bg5);
         bg4.visible = false;
         bg5.visible = true;
     case 2943:
