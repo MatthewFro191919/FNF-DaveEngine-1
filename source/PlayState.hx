@@ -245,11 +245,14 @@ class PlayState extends MusicBeatState
 
 	public static var eyesoreson = true;
 
- var bg1:FlxSprite;
- var bg2:FlxSprite;
- var bg3:FlxSprite;
- var bg4:FlxSprite;
- var bg5:FlxSprite;
+	var multidimensionBG:BGSprite;
+	var currentmultidimensionBG:String;
+
+	var bg1:BGSprite;
+	var bg2:BGSprite;
+        var bg3:BGSprite;
+	var bg4:BGSprite;
+	var bg5:BGSprite;
 
 	override public function create()
 	{
@@ -420,7 +423,13 @@ class PlayState extends MusicBeatState
 			gf.visible = false;
 
 		dad = new Character(100, 100, SONG.player2);
-
+		switch (SONG.song.toLowerCase())
+		{
+			case 'insanity' | 'multidimensional':
+				dadmirror = new Character(100, 200, "dave-angey");
+				dadmirror.visible = false;
+		}
+		
 		for (tween in tweenList)
 			tween.active = false;
 
@@ -694,78 +703,7 @@ class PlayState extends MusicBeatState
 			case 'MultidimensionalBG':
 				stageName = 'MultidimensionalBG';
 				bgZoom = 0.7;
-				var DayBG = new FlxSprite(-608, -500).loadGraphic(Paths.image("bambi/sky"));
-				FlxG.state.add(DayBG);
-				DayBG.scrollFactor.set(0.1, 0.1);
 
-				var flatgrass = new FlxSprite(-55, -150).loadGraphic(Paths.image("bambi/gm_flatgrass"));
-				FlxG.state.add(flatgrass);
-				flatgrass.scrollFactor.set(0.3, 0.3);
-				flatgrass.scale.set(0.3, 0.3);
-
-				var hills = new FlxSprite(-220, 5).loadGraphic(Paths.image("bambi/orangey hills"));
-				FlxG.state.add(hills);
-				hills.scrollFactor.set(0.3, 0.3);
-
-				var farm = new FlxSprite(69, 85).loadGraphic(Paths.image("bambi/funfarmhouse"));
-				FlxG.state.add(farm);
-				farm.scrollFactor.set(0.6, 0.6);
-
-				var ground = new FlxSprite(-480, 480).loadGraphic(Paths.image("bambi/grass lands"));
-				FlxG.state.add(ground);
-				ground.scrollFactor.set(1, 1);
-
-				var corn1 = new FlxSprite(-280, 180).loadGraphic(Paths.image("bambi/cornFence"));
-				FlxG.state.add(corn1);
-				corn1.scrollFactor.set(1, 1);
-
-				var corn2 = new FlxSprite(1220, 200).loadGraphic(Paths.image("bambi/cornFence2"));
-				FlxG.state.add(corn2);
-				corn2.scrollFactor.set(1, 1);
-
-				var sign = new FlxSprite(125, 340).loadGraphic(Paths.image("bambi/Sign"));
-				FlxG.state.add(sign);
-				sign.scrollFactor.set(1, 1);
-
-				bg1 = new FlxSprite(-800, -500).loadGraphic(Paths.image("RedSkyBG"));
-				sprites.add(bg1);
-				bg1.scrollFactor.set(1, 1);
-				bg1.scale.set(1.3, 1.3);
-				voidShader(bg1);
-				add(bg1);
-				bg1.visible = true;
-
-				bg2 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/Trippy"));
-				sprites.add(bg2);
-				bg2.scrollFactor.set(1, 1);
-				bg2.scale.set(1.3, 1.3);
-				voidShader(bg2);
-				add(bg2);
-				bg2.visible = false;
-
-				bg3 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/PIlls"));
-				sprites.add(bg3);
-				bg3.scrollFactor.set(1, 1);
-				bg3.scale.set(1.3, 1.3);
-				voidShader(bg3);
-				add(bg3);
-				bg3.visible = false;
-				
-				bg4 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/Tubed"));
-				sprites.add(bg4);
-				bg4.scrollFactor.set(1, 1);
-				bg4.scale.set(1.3, 1.3);
-				voidShader(bg4);
-				add(bg4);
-				bg4.visible = false;
-
-				bg5 = new FlxSprite(-800, -500).loadGraphic(Paths.image("dave/multidimentional/DarkBlue"));
-				sprites.add(bg5);
-				bg5.scrollFactor.set(1, 1);
-				bg5.scale.set(1.3, 1.3);
-				voidShader(bg5);
-				add(bg5);
-				bg5.visible = false;
 			case 'spooky':
 				stageName = 'spooky';
 
@@ -1265,6 +1203,47 @@ class PlayState extends MusicBeatState
 		curbg = background;
 	}
 
+	function changeMultidimensionBg(type:String)
+	{
+		for (sprite in backgroundSprites)
+		{
+			backgroundSprites.remove(sprite);
+			remove(sprite);
+		}
+		multidimensionBG = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
+		backgroundSprites.add(multidimensionBG);
+		add(multidimensionBG);
+		switch (type)
+		{
+			case 'redsky':
+				multidimensionBG.loadGraphic(Paths.image("RedSkyBG"));
+				multidimensionBG.scrollFactor.set(1, 1);
+				multidimensionBG.scale.set(1.3, 1.3);
+				multidimensionBG.setPosition(-800, -500);
+			case 'trippy':
+				bg2.loadGraphic(Paths.image("dave/multidimentional/Trippy"));
+				multidimensionBG.scrollFactor.set(1, 1);
+				multidimensionBG.scale.set(1.3, 1.3);
+				multidimensionBG.setPosition(-800, -500);
+			case 'pills':
+				bg3.loadGraphic(Paths.image("dave/multidimentional/PIlls"));
+				multidimensionBG.scrollFactor.set(1, 1);
+				multidimensionBG.scale.set(1.3, 1.3);
+				multidimensionBG.setPosition(-800, -500);
+			case 'tubed':
+				multidimensionBG.loadGraphic(Paths.image("dave/multidimentional/Tubed"));
+				multidimensionBG.scrollFactor.set(1, 1);
+				multidimensionBG.scale.set(1.3, 1.3);
+				multidimensionBG.setPosition(-800, -500);
+			case 'darkblue':
+				multidimensionBG.loadGraphic(Paths.image("dave/multidimentional/DarkBlue"));
+				multidimensionBG.scrollFactor.set(1, 1);
+				multidimensionBG.scale.set(1.3, 1.3);
+				multidimensionBG.setPosition(-800, -500);
+		}
+		voidShader(multidimensionBG);
+		currentmultidimensionBG = type;
+	}
 	var startTimer:FlxTimer;
 
 	function startCountdown():Void
@@ -2880,28 +2859,59 @@ class PlayState extends MusicBeatState
 			case 'multidimensional':
 				switch (curStep)
 				{
+			        	case 0:
+						changeMultidimensionBg('redsky');
 			        	case 1024:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-		                                bg1.visible = false;
-						bg2.visible = true;
-			        	case 1536:						
-						bg2.visible = false;
-                                                bg3.visible = true;
+						changeMultidimensionBg('trippy');
+			        	case 1536:
+						FlxG.camera.flash(FlxColor.WHITE, 1);
+						changeMultidimensionBg('pills');
 					case 2048:
-	                                       FlxG.camera.flash(FlxColor.WHITE, 1);
-                                               bg3.visible = false;
-                                               bg4.visible = true;
+						FlxG.camera.flash(FlxColor.WHITE, 1);
+					        changeMultidimensionBg('tubed');
 					case 2560:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						bg4.visible = false;
-						bg5.visible = true;
+					        changeMultidimensionBg('darkblue');
 					case 2943:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						bg5.visible = false;
-						bg2.visible = true;
+						changeMultidimensionBg('trippy');
 					case 3224:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						bg2.visible = false;
+						multidimensionBG.visible = false;
+
+						var DayBG = new FlxSprite(-608, -500).loadGraphic(Paths.image("bambi/sky"));
+						FlxG.state.add(DayBG);
+						DayBG.scrollFactor.set(0.1, 0.1);
+
+						var flatgrass = new FlxSprite(-55, -150).loadGraphic(Paths.image("bambi/gm_flatgrass"));
+						FlxG.state.add(flatgrass);
+						flatgrass.scrollFactor.set(0.3, 0.3);
+						flatgrass.scale.set(0.3, 0.3);
+
+						var hills = new FlxSprite(-220, 5).loadGraphic(Paths.image("bambi/orangey hills"));
+						FlxG.state.add(hills);
+						hills.scrollFactor.set(0.3, 0.3);
+
+						var farm = new FlxSprite(69, 85).loadGraphic(Paths.image("bambi/funfarmhouse"));
+						FlxG.state.add(farm);
+						farm.scrollFactor.set(0.6, 0.6);
+
+						var ground = new FlxSprite(-480, 480).loadGraphic(Paths.image("bambi/grass lands"));
+						FlxG.state.add(ground);
+						ground.scrollFactor.set(1, 1);
+
+						var corn1 = new FlxSprite(-280, 180).loadGraphic(Paths.image("bambi/cornFence"));
+						FlxG.state.add(corn1);
+						corn1.scrollFactor.set(1, 1);
+
+						var corn2 = new FlxSprite(1220, 200).loadGraphic(Paths.image("bambi/cornFence2"));
+						FlxG.state.add(corn2);
+						corn2.scrollFactor.set(1, 1);
+
+						var sign = new FlxSprite(125, 340).loadGraphic(Paths.image("bambi/Sign"));
+						FlxG.state.add(sign);
+						sign.scrollFactor.set(1, 1);
 		           }
 		}
 
