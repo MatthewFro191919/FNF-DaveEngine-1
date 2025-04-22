@@ -1187,7 +1187,6 @@ class PlayState extends MusicBeatState
 				startCountdown();
 		});
 	}
-
 	function voidShader()
 	{
 		if(FlxG.save.data.waving){
