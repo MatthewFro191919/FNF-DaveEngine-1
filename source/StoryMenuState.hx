@@ -54,7 +54,7 @@ class StoryMenuState extends MusicBeatState
 		'menu_christmas',
 		'menu_school',
 		'menu_tank',
-		'menu_stage'
+		'menu_dave'
 	];
 
 	var weekBanners:Array<FlxSprite> = new Array<FlxSprite>();
